@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Erro interno do servidor - 500{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-center">
+  <div class="row">
+    <div class="col">
+      <h1 class="mb-4">Algo deu errado</h1>
+      <h3 class="mb-5">Por favor, tente novamente em instantes.</h3>
+    </div>
+  </div>
+  <figure>
+    <img class="mb-5" src="{{ url_for('static', filename='erro500.gif') }}" alt="Erro 500">
+  </figure>
+  <div class="row">
+    <div class="col">
+      <p>{{ erroHttp }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

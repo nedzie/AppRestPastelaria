@@ -7,3 +7,8 @@ bp_cliente = Blueprint(
 @bp_cliente.route('/')
 def formListaCliente():
     return render_template('formListaCliente.html'), 200
+
+
+@bp_cliente.route('/form-cliente/', methods=['GET'])
+def formCliente():
+    return render_template('formCliente.html')

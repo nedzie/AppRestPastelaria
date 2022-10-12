@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Home</title>
-</head>
+{% block title %} Opa {% endblock %}
 
-<body>
-  <h1>Opa, bem vindo!</h1>
-  <h1>Uso de render_template</h1>
-  <p>Marcos Fernandes</p>
-</body>
+{% block content %}
+<h1>Home</h1>
+<p class="important">Seja bem vindo!</p>
+<p>Esta seção está em desenvolvimento.</p>
 
-</html>
+{% endblock %}
