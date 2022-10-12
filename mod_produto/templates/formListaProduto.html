@@ -1,15 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Produtos</title>
-</head>
+{% block title %}Produtos{% endblock %}
 
-<body>
-  <h1>Rota da página de Produtos da nossa WEB APP</h1>
-  <h1>Uso de render_template</h1>
-  <p>Marcos Fernandes</p>
-</body>
+{% block content %}
+<form class="d-flex justify-content-between mb-3" action="{{ url_for('produto.formProduto') }}" , method="GET">
+  <h1 class="fw-bold destacar-titulo">Produtos</h1>
+  <button class="btn btn-outline-primary">Novo Produto</button>
+</form>
 
-</html>
+<table class="table table-dark table-striped table-hover table-borderless">
+  <thead class="text-center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Valor Unitário (R$)</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <tr>
+      <th scope="row">...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td class="d-grid d-md-block">
+        <button class="btn btn-sm btn-primary me-0 md-md-1 mb-1 mb-md-auto">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger me-0 md-md-1 mb-1 mb-md-auto">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

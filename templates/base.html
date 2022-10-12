@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')  }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.2.2-dist/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.2.0-web/css/all.min.css') }}">
+
+  <title>{% block title %} {% endblock %} - AbcBolinhas</title>
+
+  {% block style %} {% endblock %}
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+    :root {
+      --btn-primary-claro: #bd9528;
+      --btn-primary-outline-escuro: #614b10;
+    }
+
+    a {
+      color: rgb(168, 203, 233);
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: .7;
+    }
+
+    a:visited {
+      color: rgb(138, 164, 187);
+    }
+
+    body {
+      background-color: #1c1e20;
+      color: rgb(226, 226, 226);
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .important {
+      color: rgb(221, 177, 96);
+    }
+
+    .destacar-titulo {
+      color: rgb(151, 104, 43);
+    }
+
+    .bg-form {
+      background-color: #32373d;
+    }
+
+    .no-resize {
+      resize: none;
+    }
+
+    /* Overrides Bootstrap */
+
+    .btn-primary {
+      background-color: var(--btn-primary-outline-escuro) !important;
+      border-color: var(--btn-primary-outline-escuro) !important;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--btn-primary-claro) !important;
+      border-color: var(--btn-primary-claro) !important;
+    }
+
+    .btn-outline-primary {
+      color: var(--btn-primary-outline-escuro) !important;
+      border-color: var(--btn-primary-outline-escuro) !important;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: var(--btn-primary-claro) !important;
+      color: var(--branco) !important;
+    }
+  </style>
+</head>
+
+<body>
+  {% block menu %}
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href=" {{ url_for('index.index') }}">Pastelaria do Zé</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('index.index') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page"
+                href="{{ url_for('funcionario.formListaFuncionario') }}">Funcionários</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page"
+                href="{{ url_for('cliente.formListaCliente') }}">Clientes</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page"
+                href="{{ url_for('produto.formListaProduto') }}">Produtos</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  {% endblock %}
+
+  <div class="container mt-4">
+    {% block content %} {% endblock %}
+  </div>
+
+  {% block footer %}
+  <!-- <div class="container">
+    <footer class="py-3 mt-auto w-75 mx-auto fixed-bottom">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pra adicionar link é só multiplicar esse
+            aqui</a></li>
+      </ul>
+      <p class="text-center text-muted">&copy; 2022 by <a href="https://github.com/nedzie" target="_blank">Marcos
+          Fernandes</a></p>
+    </footer>
+  </div> -->
+  {% endblock %}
+
+  {% block js %} {% endblock %}
+
+  <script src="{{ url_for('static', filename='bootstrap-5.2.2-dist/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='fontawesome-free-6.2.0-web/js/all.js') }}"></script>
+
+</body>
+
+</html>

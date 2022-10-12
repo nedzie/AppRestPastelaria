@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column align-items-center">
+
+  <div class="card bg-form w-50">
+    <form name="cliente" id="cliente" method="POST">
+      <div class="card-header">
+        <h1 class="fw-bold destacar-titulo">Cadastro de Clientes</h1>
+      </div>
+
+      <div class="card-body">
+        <div class="form-group mb-3">
+          <label class="form-label" for="codigo">Código</label>
+          <input class="form-control text-bg-dark" type="text" id="codigo" name="codigo" placeholder="Código" readonly>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="nome">Nome Funcionário</label>
+          <input class="form-control text-bg-dark" type="text" name="nome" id="nome" placeholder="Nome Cliente"
+            maxlength="100" autofocus required>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="cpf">CPF</label>
+          <input class="form-control text-bg-dark" type="text" name="cpf" id="cpf" placeholder="CPF" maxlength="15"
+            required>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="telefone">Telefone</label>
+          <input class="form-control text-bg-dark" type="tel" name="telefone" id="telefone" placeholder="Telefone"
+            maxlength="15" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="telefone">Compra fiado?</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="compraFiado" id="sim">
+            <label class="form-check-label" for="sim">
+              Sim
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="compraFiado" id="nao">
+            <label class="form-check-label" for="nao">
+              Não
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="mb-2" for="startDate">Data fiado</label>
+          <input id="startDate" class="form-control  text-bg-dark" type="date" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="senha">Senha</label>
+          <input class="form-control text-bg-dark" type="password" name="senha" id="senha" placeholder="Senha" required>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-label" for="resenha">Confirmar senha</label>
+          <input class="form-control text-bg-dark" type="password" name="resenha" id="resenha" placeholder="Senha"
+            required>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn btn-primary" type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i
+            class='fas fa-save'></i> Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
