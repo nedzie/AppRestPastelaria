@@ -7,7 +7,7 @@
 <div class="d-flex flex-column align-items-center">
 
   <div class="card bg-form w-50">
-    <form name="funcionario" id="funcionario" method="POST">
+    <form name="funcionario" id="funcionario" method="POST" action="{{ url_for('funcionario.insert') }}">
       <div class="card-header">
         <h1 class="fw-bold destacar-titulo">Cadastro de Funcionários</h1>
       </div>

@@ -6,9 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')  }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.2.2-dist/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.2.0-web/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2/sweetalert2.min.css') }}">
 
   <title>{% block title %} {% endblock %} - AbcBolinhas</title>
 
@@ -117,6 +118,7 @@
       </div>
     </nav>
   </div>
+
   {% endblock %}
 
   <div class="container mt-4">
@@ -124,22 +126,59 @@
   </div>
 
   {% block footer %}
-  <!-- <div class="container">
-    <footer class="py-3 mt-auto w-75 mx-auto fixed-bottom">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pra adicionar link é só multiplicar esse
-            aqui</a></li>
-      </ul>
-      <p class="text-center text-muted">&copy; 2022 by <a href="https://github.com/nedzie" target="_blank">Marcos
-          Fernandes</a></p>
-    </footer>
-  </div> -->
+
   {% endblock %}
 
-  {% block js %} {% endblock %}
+  {% if request.args.get('msg'): %}
+  <script>
+    Swal.fire({
+      title: 'Sucesso',
+      text: '{{ request.args.get("msg") }}',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  </script>
+  {% elif msg: %}
+  <script>
+    Swal.fire({
+      title: 'Sucesso',
+      text: '{{ msg }}',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+  </script>
+  {% elif request.args.get('msgErro'): %}
+  <script>
+    Swal.fire({
+      title: 'Erro',
+      text: "{{ request.args.get('msgErro') }}",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  </script>
+  {% elif msgErro: %}
+  <script>
+    Swal.fire({
+      title: 'Erro',
+      text: '{{ msgErro }}',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  </script>
+  {% endif %}
 
+  {% block js %}
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='jquery-3.6.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
   <script src="{{ url_for('static', filename='bootstrap-5.2.2-dist/js/bootstrap.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='fontawesome-free-6.2.0-web/js/all.js') }}"></script>
+  <script>
+    Swal.fire({
+      title: ' Teste!', text: 'sweetalert2 funcionando!', icon: 'success', confirmButtonText: 'OK'
+    }); </script>
+  {% endblock %}
 
 </body>
 

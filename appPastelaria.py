@@ -5,7 +5,6 @@ from mod_funcionario.funcionario import bp_funcionario
 from mod_index.index import bp_index
 from mod_erro.erro import bp_erro
 
-
 app = Flask(__name__)
 
 
