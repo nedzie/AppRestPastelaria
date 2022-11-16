@@ -20,21 +20,24 @@
     </tr>
   </thead>
   <tbody class="text-center">
+    {% if result %}
+    {% for row in result[0] %}
     <tr>
-      <th scope="row">...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+      <th scope="row">{{ row['id_produto'] }}</th>
+      <td>{{ row['nome'] }}</td>
+      <td>{{ row['descricao'] }}</td>
+      <td><img src="{{ row['foto'] }}" /></td>
+      <td>{{ row['valor_unitario'] }}</td>
       <td class="d-grid d-md-block">
         <button class="btn btn-sm btn-primary me-0 md-md-1 mb-1 mb-md-auto">
-          <i class="fas fa-edit"></i>
+          <i class="bi bi-pencil"></i>
         </button>
         <button class="btn btn-sm btn-outline-danger me-0 md-md-1 mb-1 mb-md-auto">
-          <i class="fas fa-trash"></i>
-        </button>
+          <i class="bi bi-trash"></i>
       </td>
     </tr>
+    {% endfor %}
+    {% endif %}
   </tbody>
 </table>
 {% endblock %}
