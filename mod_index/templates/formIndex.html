@@ -4,7 +4,10 @@
 
 {% block content %}
 <h1>Home</h1>
-<p class="important">Seja bem vindo!</p>
-<p>Esta seção está em desenvolvimento.</p>
-
+{% if 'login' in session %}
+Bem-vindo(a) <b>{{ session['login'] }}</b>!
+{% if 'usuario' in session %}
+Cargo: <b>{{ session['usuario'] }}</b>
+{% endif %}
+{% endif %}
 {% endblock %}

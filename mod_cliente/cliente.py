@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from mod_compartilhado.funcoes import Funcoes
 import requests
+from mod_login.login import validaSessao
 
 bp_cliente = Blueprint(
     'cliente', __name__, url_prefix="/cliente", template_folder='templates')
@@ -12,6 +13,7 @@ headers = {'x-token': 'abcBolinhasToken', 'x-key': 'abcBolinhasKey'}
 
 
 @bp_cliente.route('/', methods=['GET', 'POST'])
+@validaSessao
 def formListaCliente():
     try:
         response = requests.get(urlApiClientes, headers=headers)
@@ -24,11 +26,13 @@ def formListaCliente():
 
 
 @bp_cliente.route('/form-cliente/', methods=['GET', 'POST'])
+@validaSessao
 def formCliente():
     return render_template('formCliente.html')
 
 
 @bp_cliente.route('/insert', methods=['POST'])
+@validaSessao
 def insert():
     try:
         nome = request.form['nome']

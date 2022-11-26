@@ -32,11 +32,11 @@
       <td>{{ row['grupo'] }}</td>
       <td>{{ row['senha'] }}</td>
       <td class="d-grid d-md-block">
-        <button class="btn btn-sm btn-primary me-0 md-md-1 mb-1 mb-md-auto">
-          <i class="bi bi-pencil"></i>
-        </button>
-        <button class="btn btn-sm btn-outline-danger me-0 md-md-1 mb-1 mb-md-auto">
-          <i class="bi bi-trash"></i>
+        <form action="{{ url_for('funcionario.formEditFuncionario') }}" method="POST"
+          name="formEdit{{ row[id_funcionario] }}">
+          <input type="hidden" name="id" value="{{ row['id_funcionario'] }}">
+          <button type="submit" name="formEditFuncionario"><i class="bi bi-pencil"></i></button>
+        </form>
       </td>
     </tr>
     {% endfor %}

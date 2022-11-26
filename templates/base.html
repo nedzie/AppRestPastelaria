@@ -111,8 +111,8 @@
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success" type="submit"><a
+                href="{{ url_for('login.logoff') }}">Sair</a></button>
           </form>
         </div>
       </div>
@@ -127,6 +127,15 @@
 
   {% block footer %}
 
+  {% endblock %}
+
+  {% block js %}
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='jquery-3.6.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap-5.2.2-dist/js/bootstrap.min.js') }}"></script>
   {% endblock %}
 
   {% if request.args.get('msg'): %}
@@ -166,19 +175,6 @@
     });
   </script>
   {% endif %}
-
-  {% block js %}
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-  <script src="{{ url_for('static', filename='jquery-3.6.1.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='bootstrap-5.2.2-dist/js/bootstrap.min.js') }}"></script>
-  <script>
-    Swal.fire({
-      title: ' Teste!', text: 'sweetalert2 funcionando!', icon: 'success', confirmButtonText: 'OK'
-    }); </script>
-  {% endblock %}
 
 </body>
 
