@@ -2,49 +2,62 @@
 
 {% block title %}Funcionários{% endblock %}
 
+{# Variáveis #}
+{% set id = result[0].id_funcionario if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set matricula = result[0].matricula if result else ''%}
+{% set cpf = result[0].cpf if result else '' %}
+{% set telefone = result[0].telefone if result else '' %}
+{% set grupo = result[0].grupo if result else '' %}
+{% set senha = result[0].senha if result else '' %}
+
 {% block content %}
 
 <div class="d-flex flex-column align-items-center">
 
   <div class="card bg-form w-50">
-    <form name="funcionario" id="funcionario" method="POST" action="{{ url_for('funcionario.insert') }}">
+    <form action="{{ url_for('funcionario.edit') if result else url_for('funcionario.insert') }}"
+      name="{{ 'formEditar' if result else 'formAdicionar' }}" id="{{ 'formEditar' if result else 'formAdicionar' }}"
+      method="POST">
       <div class="card-header">
         <h1 class="fw-bold destacar-titulo">Cadastro de Funcionários</h1>
       </div>
 
       <div class="card-body">
         <div class="form-group mb-3">
-          <label class="form-label" for="codigo">Código</label>
-          <input class="form-control text-bg-dark" type="text" id="codigo" name="codigo" placeholder="Código" readonly>
+          <label class="form-label" for="codigo">Id</label>
+          <input class="form-control text-bg-dark" type="text" id="id" name="id" placeholder="Código" value="{{ id }}"
+            readonly>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="nome">Nome Funcionário</label>
           <input class="form-control text-bg-dark" type="text" name="nome" id="nome" placeholder="Nome Funcionário"
-            maxlength="100" autofocus required>
+            maxlength="100" value="{{ nome }}" autofocus required>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="matricula">Matrícula</label>
           <input class="form-control text-bg-dark" type="text" name="matricula" id="matricula" placeholder="Matrícula"
-            maxlength="15" required>
+            maxlength="15" value="{{ matricula }}" required>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="cpf">CPF</label>
           <input class="form-control text-bg-dark" type="text" name="cpf" id="cpf" placeholder="CPF" maxlength="15"
-            required>
+            value="{{ cpf }}" required>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="telefone" class="form-label">Telefone</label>
           <input class="form-control text-bg-dark" type="tel" name="telefone" id="telefone" placeholder="Telefone"
-            maxlength="15" required>
+            maxlength="15" value="{{ telefone }}" required>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="grupo" class="form-label">Grupo</label>
           <select class="form-select text-bg-dark" name="grupo" id="grupo" aria-label="grupo" required>
+            <option value="{{ grupo }}" selected>{{ grupo }}</option>
             <option value="1">Atendente</option>
             <option value="2">Caixa</option>
             <option value="3">Administrador</option>
@@ -53,13 +66,14 @@
 
         <div class="form-group mb-3">
           <label class="form-label" for="senha">Senha</label>
-          <input class="form-control text-bg-dark" type="password" name="senha" id="senha" placeholder="Senha" required>
+          <input class="form-control text-bg-dark" type="password" name="senha" id="senha" placeholder="Senha"
+            value="{{ senha }}" required>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="resenha">Confirmar senha</label>
           <input class="form-control text-bg-dark" type="password" name="resenha" id="resenha" placeholder="Senha"
-            required>
+            value="{{ senha }}" required>
         </div>
       </div>
       <div class="card-footer">

@@ -2,13 +2,21 @@
 
 {% block title %}Produto{% endblock %}
 
+{# Variáveis #}
+{% set id = result[0].id_produto if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set descricao = result[0].descricao if result else '' %}
+{# A foto não pode ser posta por razões de segurança, segundo minhas pesquisas #}
+{% set valor_unitario = result[0].valor_unitario if result else '' %}
+
 {% block content %}
 
 <div class="d-flex flex-column align-items-center">
 
   <div class="card bg-form w-50">
-    <form name="produto" id="produto" method="POST" action="{{ url_for('produto.insert') }}"
-      enctype="multipart/form-data">
+    <form action="{{ url_for('produto.edit') if result else url_for('produto.insert') }}"
+      name="{{ 'formEditar' if result else 'formAdicionar' }}" id="{{ 'formEditar' if result else 'formAdicionar' }}"
+      method="POST" enctype="multipart/form-data">
       <div class="card-header">
         <h1 class="fw-bold destacar-titulo">Cadastro de Produtos</h1>
       </div>
@@ -16,19 +24,20 @@
       <div class="card-body">
         <div class="form-group mb-3">
           <label class="form-label" for="codigo">Código</label>
-          <input class="form-control text-bg-dark" type="text" id="codigo" name="codigo" placeholder="Código" readonly>
+          <input class="form-control text-bg-dark" type="text" id="codigo" name="codigo" placeholder="Código"
+            value="{{ id }}" readonly>
         </div>
 
         <div class="form-group mb-3">
           <label class="form-label" for="nome">Nome Produto</label>
           <input class="form-control text-bg-dark" type="text" name="nome" id="nome" placeholder="Nome Produto"
-            maxlength="100" autofocus required>
+            maxlength="100" autofocus value="{{ nome }}" required>
         </div>
 
         <div class="form-floating mt-4">
           <textarea class="form-control text-bg-dark no-resize" name="descricao"
             placeholder="Informe a descrição do produto" id="floatingTextarea" style="height: 100px" maxlength="200"
-            required></textarea>
+            required>{{ descricao }}</textarea>
           <label for="floatingTextarea">Descrição do produto</label>
         </div>
 
@@ -41,9 +50,8 @@
         <div class="form-group mb-3">
           <label class="form-label" for="valor">Valor Produto</label>
           <input class="form-control text-bg-dark" type="number" name="valor_unitario" id="valor_unitario"
-            placeholder="Valor Produto" max="1000" required>
+            placeholder="Valor Produto" max="1000" value="{{ valor_unitario }}" required>
         </div>
-
 
       </div>
       <div class="card-footer">
